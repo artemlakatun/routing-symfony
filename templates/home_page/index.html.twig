@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}home page{% endblock %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/index.css') }}">{% endblock %}
+
+{% block body %}
+    <header class="header">
+        <div class="logo">
+            <p>training PHP</p>
+        </div>
+        <div class="nav-bar">
+            <ul class="nav-menu">
+                <li><a class="link" href="{{ path('app_review_page') }}">add a review</a></li>
+            </ul>
+        </div>
+    </header>
+    <section class="container1">
+        <div class="welcome_preview">
+            <span class="span_welcome_logo_font span1">
+                DO
+            </span><br>
+            <span class="span_welcome_logo_font span2">
+                YOU TEACH
+            </span><br>
+            <span class="span3">
+                PHP  is a common open-source general-purpose programming language. PHP is specifically designed
+                for web development and its code can be embedded directly into HTML.
+            </span>
+            <span class="span_welcome_logo_font span_welcome_logo_padding span4">
+                PHP?
+            </span>
+        </div>
+    </section>
+    <section class="container2">
+        <h4>Reviews</h4>
+    </section>
+    <section class="container3">
+        <ul>
+            {% for review in reviews %}
+                <li>
+                    <strong>User Name:</strong> {{ review.userName }}<br>
+                    <strong>Subject:</strong> {{ review.subject }}<br>
+                    <strong>Text:</strong> {{ review.text }}<br>
+                    <strong>Evaluation:</strong> {{ review.evaluation }}
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}
