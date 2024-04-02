@@ -391,3 +391,32 @@ body {
     color: lightblue;
     transition: 0.3s;
 }
+
+/* register page */
+
+.register_h4 {
+    text-align: center;
+}
+
+.register_container {
+    width: 40%;
+    height: auto;
+    border: 1px solid black;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-check {
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+}
