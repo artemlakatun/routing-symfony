@@ -10,6 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Reviews;
 
+use App\Service\MyService;
+
 class ReviewPageController extends AbstractController {
 
     #[Route('/review', name: 'app_review_page')]

@@ -2,24 +2,38 @@
 
 {% block title %}review page{% endblock %}
 
-{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/index.css') }}">{% endblock %}
+{% block stylesheets %}
 
-{% block body %}
-    <header class="review-header">
-        <div class="review-logo">
-            <p>routing PHP</p>
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+
+{% endblock %}
+
+{% block header %}
+    <header class="header">
+        <div class="logo">
+            <p>training PHP</p>
         </div>
-        <div class="review-nav-bar">
-            <a class="review-link" href="{{ path('home_page') }}">main page</a>
+        <div class="nav-bar">
+            <ul class="nav-menu">
+                <li><a class="link" href="{{ path('home_page') }}">home page</a></li>
+                <li><a class="link" href="#">user</a></li>
+                <li><a class="link" href="{{ path('app_login') }}">log in</a></li>
+                <li><a class="link" href="{{ path('app_register') }}">sing up</a></li>
+            </ul>
         </div>
     </header>
-    <h1>Leave a Review</h1>
+{% endblock %}
 
-    {{ form_start(form, {'attr': {'class': 'review-form'}}) }}
-    {{ form_row(form.userName, {'attr': {'class': 'review-form-control'}}) }}
-    {{ form_row(form.subject, {'attr': {'class': 'review-form-control'}}) }}
-    {{ form_row(form.text, {'attr': {'class': 'review-form-control'}}) }}
-    {{ form_row(form.evaluation, {'attr': {'class': 'review-form-control'}}) }}
-    <button class="review-submit" type="submit">Submit</button>
-    {{ form_end(form) }}
+{% block body %}
+
+    <h4>Leave a Review</h4>
+
+        {{ form_start(form, {'attr': {'class': 'review-form'}}) }}
+        {{ form_row(form.userName, {'attr': {'class': 'review-form-control'}}) }}
+        {{ form_row(form.subject, {'attr': {'class': 'review-form-control'}}) }}
+        {{ form_row(form.text, {'attr': {'class': 'review-form-control'}}) }}
+        {{ form_row(form.evaluation, {'attr': {'class': 'review-form-control'}}) }}
+        <button class="review-submit" type="submit">Submit</button>
+        {{ form_end(form) }}
+
 {% endblock %}
