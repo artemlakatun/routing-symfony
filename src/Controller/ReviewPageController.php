@@ -9,8 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Reviews;
-
-use App\Service\MyService;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ReviewPageController extends AbstractController {
 
@@ -24,7 +23,11 @@ class ReviewPageController extends AbstractController {
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($review);
             $entityManager->flush();
+
+            return new RedirectResponse($this->generateUrl('home_page'));
         }
+
+
 
         return $this->render('review_page/index.html.twig', [
             'controller_name' => 'ReviewPageController',

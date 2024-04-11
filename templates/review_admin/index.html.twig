@@ -34,18 +34,23 @@
             <p><a class="logout" href="{{ path('app_logout') }}">Logout</a></p>
         </div>
     </div>
-    <div class="login">
+    <section class="admin-container">
         {% for review in reviews %}
-            <div class="review_block" data-id="{{ review.id }}">
-                <div class="review_el" contenteditable="false">User Name: {{ review.userName }}</div>
-                <div class="review_el" contenteditable="false">Subject: {{ review.subject }}</div>
-                <div class="review_el" contenteditable="false">Text: {{ review.text }}</div>
-                <div class="review_el" contenteditable="false">Evaluation: {{ review.evaluation }}</div>
-                <div class="review_buttons">
-                    <button class="btn-edit" data-id="{{ review.id }}">Изменить</button>
-                    <button class="btn-save" data-id="{{ review.id }}">Сохранить</button>
-                </div>
+            <div class="admin-review">
+                <div class="admin-user-name admin-review-column"><strong>User:</strong> {{ review.userName }}</div>
+                <div class="admin-subject admin-review-column"><strong>Subject:</strong> {{ review.subject }}</div>
+                <div class="admin-text admin-review-column">{{ review.text }}</div>
+                <div class="admin-evaluation admin-review-column"><strong>Evaluation:</strong> {{ review.evaluation }}</div>
+
+                <form action="{{ path('app_review_admin') }}" method="post">
+                    <input type="hidden" name="id" value="{{ review.id }}">
+                    <input class="admin-user-name admin-review-column" type="text" name="userName" value="{{ review.userName }}">
+                    <input class="admin-subject admin-review-column" type="text" name="subject" value="{{ review.subject }}">
+                    <input class="admin-text admin-review-column" type="text" name="text" value="{{ review.text }}">
+                    <input class="admin-evaluation admin-review-column" type="text" name="evaluation" value="{{ review.evaluation }}">
+                    <input class="admin-edit" type="submit" value="Save">
+                </form>
             </div>
         {% endfor %}
-    </div>
+    </section>
 {% endblock %}

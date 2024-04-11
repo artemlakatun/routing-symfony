@@ -7,6 +7,22 @@
     <link rel="stylesheet" href="{{ asset('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css') }}">
 {% endblock %}
 
+{% block header %}
+    <header class="header">
+        <div class="logo">
+            <p>training PHP</p>
+        </div>
+        <div class="nav-bar">
+            <ul class="nav-menu">
+                <li><a class="link" href="{{ path('home_page') }}">home page</a></li>
+                <li><a class="link" href="{{ path('app_review_page') }}">add a review</a></li>
+                <li class="link link_toggle" id="link_toggle">user</li>
+                <li><a class="link" href="{{ path('app_login') }}">log in</a></li>
+            </ul>
+        </div>
+    </header>
+{% endblock %}
+
 {% block body %}
     <div class="slide_menu" id="slide_menu">
         <div class="slide_menu_header">
