@@ -4,11 +4,9 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %} <link rel="stylesheet" href="{{ asset('css/index.css') }}"> {% endblock %}
+        {% block javascripts %} <script src="{{ asset('js/index.js') }}"></script> {% endblock %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
     </head>
     {% block header %}
         <header class="header">
@@ -18,7 +16,7 @@
             <div class="nav-bar">
                 <ul class="nav-menu">
                     <li><a class="link" href="{{ path('app_review_page') }}">add a review</a></li>
-                    <li class="link" id="link_toggle"> user</li>
+                    <li class="link link_toggle" id="link_toggle">user</li>
                     <li><a class="link" href="{{ path('app_login') }}">log in</a></li>
                     <li><a class="link" href="{{ path('app_register') }}">sing up</a></li>
                 </ul>

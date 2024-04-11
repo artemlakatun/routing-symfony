@@ -7,58 +7,56 @@
     <link rel="stylesheet" href="{{ asset('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css') }}">
 {% endblock %}
 
-{% block header %}
-    <header class="header">
-        <div class="logo">
-            <p>training PHP</p>
-        </div>
-        <div class="nav-bar">
-            <ul class="nav-menu">
-                <li><a class="link" href="{{ path('home_page') }}">home page</a></li>
-                <li><a class="link" href="{{ path('app_review_page') }}">add a review</a></li>
-                <li><a class="link" href="#">user</a></li>
-                <li><a class="link" href="{{ path('app_login') }}">log in</a></li>
-            </ul>
-        </div>
-    </header>
-{% endblock %}
-
 {% block body %}
-
-    <h4 class="register_h4">Register</h4>
-
-    <div class="register_container">
-
-        {{ form_start(registrationForm, {'attr': {'class': 'your-form-class'}}) }}
-        {{ form_errors(registrationForm) }}
-
-        <div class="form-group">
-            <label for="{{ registrationForm.email.vars.id }}">
-                <i class='bx bx-envelope'></i>
-                {{ form_row(registrationForm.email, {
-                    'label': ' ',
-                    'attr': {'class': 'form-control', 'placeholder': 'Email'}
-                }) }}
-            </label>
+    <div class="slide_menu" id="slide_menu">
+        <div class="slide_menu_header">
+            <div class="photo"></div>
+            <span id="closeButton" class="close">&times;</span>
         </div>
-        <div class="form-group">
-            <label for="{{ registrationForm.plainPassword.vars.id }}">
-                <i class='bx bx-lock-alt'></i>
-                {{ form_row(registrationForm.plainPassword, {
-                    'label': ' ',
-                    'attr': {'class': 'form-control', 'placeholder': 'Password'}
-                }) }}
-            </label>
+        <div class="slide_menu_info">
+            <p>Status: {% if app.user %} Authorized {% else %} Not Authorized {% endif %}</p>
+            <p>Email: {% if app.user %}
+                    {{ app.user.email }}
+                    <a class="logout" href="{{ path('app_logout') }}">Logout</a>
+                {% endif %}</p>
         </div>
-        <div class="form-check">
-            {{ form_row(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
-        </div>
-        <button type="submit" class="btn btn-primary">Register</button>
-        {{ form_end(registrationForm) }}
     </div>
+    <div class="login">
+        <h4 class="register_h4">Register</h4>
 
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+        <div class="register_container">
+
+            {{ form_start(registrationForm, {'attr': {'class': 'your-form-class'}}) }}
+            {{ form_errors(registrationForm) }}
+
+            <div class="form-group">
+                <label for="{{ registrationForm.email.vars.id }}">
+                    <i class='bx bx-envelope'></i>
+                    {{ form_row(registrationForm.email, {
+                        'label': ' ',
+                        'attr': {'class': 'form-control', 'placeholder': 'Email'}
+                    }) }}
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="{{ registrationForm.plainPassword.vars.id }}">
+                    <i class='bx bx-lock-alt'></i>
+                    {{ form_row(registrationForm.plainPassword, {
+                        'label': ' ',
+                        'attr': {'class': 'form-control', 'placeholder': 'Password'}
+                    }) }}
+                </label>
+            </div>
+            <div class="form-check">
+                {{ form_row(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+            {{ form_end(registrationForm) }}
+        </div>
+
+        {% for flash_error in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+        {% endfor %}
+    </div>
 
 {% endblock %}

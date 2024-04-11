@@ -2,10 +2,6 @@
 
 {% block title %}admin page{% endblock %}
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
-{% endblock %}
-
 {% block header %}
     <header class="header">
     <div class="logo">
@@ -13,12 +9,32 @@
     </div>
     <div class="nav-bar">
         <ul class="nav-menu">
-            <li><a class="link" href="#">user</a></li>
+            <li class="link link_toggle" id="link_toggle">user</li>
+            <li><a class="link" href="{{ path('app_review_admin') }}">review bar</a></li>
         </ul>
     </div>
     </header>
 {% endblock %}
 
 {% block body %}
-
+    <div class="slide_menu" id="slide_menu">
+        <div class="slide_menu_header">
+            <div class="photo"></div>
+            <span id="closeButton" class="close">&times;</span>
+        </div>
+        <div class="slide_menu_info">
+            <p>Status: {% if app.user %} Authorized {% else %} Not Authorized {% endif %}</p>
+            <p>Email: {% if app.user %}{{ app.user.email }}{% endif %}</p>
+            <p>Role:{% if app.user %}
+                    {% for role in app.user.roles %}
+                     {{ role }}
+                    {% endfor %}
+                {% endif %}
+            </p>
+            <p><a class="logout" href="{{ path('app_logout') }}">Logout</a></p>
+        </div>
+    </div>
+    <div class="login">
+        <h4>This is admin page!</h4>
+    </div>
 {% endblock %}

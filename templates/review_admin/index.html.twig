@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}admin review{% endblock %}
+
+{% block header %}
+    <header class="header">
+        <div class="logo">
+            <p>admin page</p>
+        </div>
+        <div class="nav-bar">
+            <ul class="nav-menu">
+                <li class="link link_toggle" id="link_toggle">user</li>
+                <li><a class="link" href="{{ path('app_admin') }}">admin</a></li>
+            </ul>
+        </div>
+    </header>
+{% endblock %}
+
+{% block body %}
+    <div class="slide_menu" id="slide_menu">
+        <div class="slide_menu_header">
+            <div class="photo"></div>
+            <span id="closeButton" class="close">&times;</span>
+        </div>
+        <div class="slide_menu_info">
+            <p>Status: {% if app.user %} Authorized {% else %} Not Authorized {% endif %}</p>
+            <p>Email: {% if app.user %}{{ app.user.email }}{% endif %}</p>
+            <p>Role:{% if app.user %}
+                    {% for role in app.user.roles %}
+                        {{ role }}
+                    {% endfor %}
+                {% endif %}
+            </p>
+            <p><a class="logout" href="{{ path('app_logout') }}">Logout</a></p>
+        </div>
+    </div>
+    <div class="login">
+        {% for review in reviews %}
+            <div class="review_block" data-id="{{ review.id }}">
+                <div class="review_el" contenteditable="false">User Name: {{ review.userName }}</div>
+                <div class="review_el" contenteditable="false">Subject: {{ review.subject }}</div>
+                <div class="review_el" contenteditable="false">Text: {{ review.text }}</div>
+                <div class="review_el" contenteditable="false">Evaluation: {{ review.evaluation }}</div>
+                <div class="review_buttons">
+                    <button class="btn-edit" data-id="{{ review.id }}">Изменить</button>
+                    <button class="btn-save" data-id="{{ review.id }}">Сохранить</button>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

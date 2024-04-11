@@ -2,9 +2,20 @@
 
 {% block title %}home page{% endblock %}
 
-{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/index.css') }}">{% endblock %}
-
 {% block body %}
+    <div class="slide_menu" id="slide_menu">
+        <div class="slide_menu_header">
+            <div class="photo"></div>
+            <span id="closeButton" class="close">&times;</span>
+        </div>
+        <div class="slide_menu_info">
+            <p>Status: {% if app.user %} Authorized {% else %} Not Authorized {% endif %}</p>
+            <p>Email: {% if app.user %}
+                    {{ app.user.email }}
+                    <a class="logout" href="{{ path('app_logout') }}">Logout</a>
+                {% endif %}</p>
+        </div>
+    </div>
     <section class="container1">
         <div class="welcome_preview">
             <span class="span_welcome_logo_font span1">

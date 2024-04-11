@@ -2,31 +2,22 @@
 
 {% block title %}review page{% endblock %}
 
-{% block stylesheets %}
-
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
-
-{% endblock %}
-
-{% block header %}
-    <header class="header">
-        <div class="logo">
-            <p>training PHP</p>
-        </div>
-        <div class="nav-bar">
-            <ul class="nav-menu">
-                <li><a class="link" href="{{ path('home_page') }}">home page</a></li>
-                <li><a class="link" href="#">user</a></li>
-                <li><a class="link" href="{{ path('app_login') }}">log in</a></li>
-                <li><a class="link" href="{{ path('app_register') }}">sing up</a></li>
-            </ul>
-        </div>
-    </header>
-{% endblock %}
-
 {% block body %}
-
-    <h4>Leave a Review</h4>
+    <div class="slide_menu" id="slide_menu">
+        <div class="slide_menu_header">
+            <div class="photo"></div>
+            <span id="closeButton" class="close">&times;</span>
+        </div>
+        <div class="slide_menu_info">
+            <p>Status: {% if app.user %} Authorized {% else %} Not Authorized {% endif %}</p>
+            <p>Email: {% if app.user %}
+                    {{ app.user.email }}
+                    <a class="logout" href="{{ path('app_logout') }}">Logout</a>
+                {% endif %}</p>
+        </div>
+    </div>
+    <div class="login">
+        <h4>Leave a Review</h4>
 
         {{ form_start(form, {'attr': {'class': 'review-form'}}) }}
         {{ form_row(form.userName, {'attr': {'class': 'review-form-control'}}) }}
@@ -35,5 +26,6 @@
         {{ form_row(form.evaluation, {'attr': {'class': 'review-form-control'}}) }}
         <button class="review-submit" type="submit">Submit</button>
         {{ form_end(form) }}
+    </div>
 
 {% endblock %}
